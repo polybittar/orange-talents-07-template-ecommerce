@@ -1,6 +1,8 @@
 package br.com.zupacademy.polyana.mercadolivre.dto;
 
+import br.com.zupacademy.polyana.mercadolivre.domain.SenhaLimpa;
 import br.com.zupacademy.polyana.mercadolivre.domain.Usuario;
+import br.com.zupacademy.polyana.mercadolivre.validation.validator.UniqueValue;
 import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -8,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 public class UsuarioRequest {
 
     @NotBlank
-    @Email
+    @Email @UniqueValue(fieldName = "login", domainClass = Usuario.class)
     private String login;
     @NotBlank
     @Length(min = 6)
@@ -21,6 +23,6 @@ public class UsuarioRequest {
     }
 
     public Usuario converter() {
-        return new Usuario(login, senha);
+        return new Usuario(login, new SenhaLimpa(senha));
     }
 }

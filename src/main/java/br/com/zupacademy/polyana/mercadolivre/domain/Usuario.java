@@ -1,9 +1,9 @@
 package br.com.zupacademy.polyana.mercadolivre.domain;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import br.com.zupacademy.polyana.mercadolivre.validation.validator.UniqueValue;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -26,8 +26,11 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String login, String senha) {
+    public Usuario(String login, SenhaLimpa senhaLimpa) {
+
+        Assert.hasText(login, "Insira um email de login");
+
         this.login = login;
-        this.senha = new BCryptPasswordEncoder().encode(senha);
+        this.senha = senhaLimpa.hash();
     }
 }
