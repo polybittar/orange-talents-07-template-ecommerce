@@ -29,4 +29,16 @@ public class Categoria {
         Assert.state(categoriaMae != null, "A categoria mãe é nula");
         this.categoriaMae = categoriaMae;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public Categoria getCategoriaMae() {
+        return categoriaMae;
+    }
 }

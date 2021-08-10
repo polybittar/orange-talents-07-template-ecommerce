@@ -1,4 +1,4 @@
-package br.com.zupacademy.polyana.mercadolivre.validation.validator;
+package br.com.zupacademy.polyana.mercadolivre.config.validation.validator;
 
 import org.springframework.util.Assert;
 

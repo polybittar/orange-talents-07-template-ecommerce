@@ -2,7 +2,7 @@ package br.com.zupacademy.polyana.mercadolivre.dto;
 
 import br.com.zupacademy.polyana.mercadolivre.domain.SenhaLimpa;
 import br.com.zupacademy.polyana.mercadolivre.domain.Usuario;
-import br.com.zupacademy.polyana.mercadolivre.validation.validator.UniqueValue;
+import br.com.zupacademy.polyana.mercadolivre.config.validation.validator.UniqueValue;
 import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -20,6 +20,14 @@ public class UsuarioRequest {
     public UsuarioRequest(String login, String senha) {
         this.login = login;
         this.senha = senha;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public String getSenha() {
+        return senha;
     }
 
     public Usuario converter() {

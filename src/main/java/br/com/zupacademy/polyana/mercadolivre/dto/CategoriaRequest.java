@@ -1,15 +1,11 @@
 package br.com.zupacademy.polyana.mercadolivre.dto;
 
 import br.com.zupacademy.polyana.mercadolivre.domain.Categoria;
-import br.com.zupacademy.polyana.mercadolivre.domain.SenhaLimpa;
-import br.com.zupacademy.polyana.mercadolivre.domain.Usuario;
-import br.com.zupacademy.polyana.mercadolivre.validation.validator.ExistsId;
-import br.com.zupacademy.polyana.mercadolivre.validation.validator.UniqueValue;
-import org.hibernate.validator.constraints.Length;
+import br.com.zupacademy.polyana.mercadolivre.config.validation.validator.ExistsId;
+import br.com.zupacademy.polyana.mercadolivre.config.validation.validator.UniqueValue;
 import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 public class CategoriaRequest {
@@ -35,5 +31,21 @@ public class CategoriaRequest {
             categoria.setCategoriaMae(categoriaMae);
         }
         return categoria;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Long getCategoriaMaeId() {
+        return categoriaMaeId;
+    }
+
+    public void setCategoriaMaeId(Long categoriaMaeId) {
+        this.categoriaMaeId = categoriaMaeId;
     }
 }

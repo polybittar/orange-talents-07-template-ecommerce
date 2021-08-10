@@ -1,4 +1,4 @@
-package br.com.zupacademy.polyana.mercadolivre.validation;
+package br.com.zupacademy.polyana.mercadolivre.config.validation;
 
 import java.util.List;
 
