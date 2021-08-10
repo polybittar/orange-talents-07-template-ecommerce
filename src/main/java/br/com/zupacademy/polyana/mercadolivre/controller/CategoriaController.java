@@ -22,6 +22,7 @@ public class CategoriaController {
     @PostMapping
     @Transactional
     public void cadastrar(@Valid @RequestBody CategoriaRequest categoriaRequest) {
+
         Categoria categoria = categoriaRequest.converter(entityManager);
         entityManager.persist(categoria);
     }

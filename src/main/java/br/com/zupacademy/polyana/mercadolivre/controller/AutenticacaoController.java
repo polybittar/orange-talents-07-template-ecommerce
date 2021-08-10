@@ -26,7 +26,7 @@ public class AutenticacaoController {
     }
 
     @PostMapping
-    public ResponseEntity<?> autenticacao (@RequestBody AutenticacaoRequest autenticacaoRequest) {
+    public ResponseEntity<?> autenticacar(@RequestBody AutenticacaoRequest autenticacaoRequest) {
         try{
             //converte os dados em um UsernamePasswordAuthenticationToken
             UsernamePasswordAuthenticationToken authenticationToken = autenticacaoRequest.converter();

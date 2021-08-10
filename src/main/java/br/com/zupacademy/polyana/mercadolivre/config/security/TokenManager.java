@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TokenManager {
 	
-	@Value("${forum.jwt.expiration}")
+	@Value("${forum.jwt.expiration}")													//application.properties
 	private String expiration;
 	
 	@Value("${forum.jwt.secret}")
@@ -27,7 +27,7 @@ public class TokenManager {
 				.setIssuer("API do Mercado Livre")										// quem gera o token
 				.setSubject(logado.getId().toString())									// usuario do token
 				.setIssuedAt(hoje)														// atribui data de geração do token
-				.setExpiration(dataExpiracao)											// tempo de expiração do token (application.properties)
+				.setExpiration(dataExpiracao)											// tempo de expiração do token
 				.signWith(SignatureAlgorithm.HS256, secret)								// criptografa token
 				.compact();																// compacta e transforma em uma string
 	}
