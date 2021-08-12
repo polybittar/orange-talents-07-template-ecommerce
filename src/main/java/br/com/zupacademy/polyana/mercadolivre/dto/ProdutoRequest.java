@@ -54,7 +54,7 @@ public class ProdutoRequest {
         this.descricao = descricao;
         this.data = data;
         this.idCategoria = idCategoria;
-        this.caracteristicas.addAll(caracteristicas);
+        this.caracteristicas.addAll(caracteristicas);           //a lista recebe todas as caracteristicas que chegam
     }
 
     public Produto converter(EntityManager manager, Usuario usuario) {
@@ -93,7 +93,7 @@ public class ProdutoRequest {
         for(CaracteristicaProdutoRequest caracteristica: caracteristicas){
             String nome = caracteristica.getNome();
             if(!nomesIguais.add(nome)){
-                resultados.add(nome);
+                resultados.add(nome);       //adiciona somente quando não tiver uma já com o mesmo nome
             }
         }
         return resultados;

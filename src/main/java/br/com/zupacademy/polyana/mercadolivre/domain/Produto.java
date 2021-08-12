@@ -13,7 +13,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -31,6 +30,7 @@ public class Produto {
     private @NotNull @Positive BigDecimal valor;
     private LocalDateTime data;
     @NotNull
+    @Valid
     @ManyToOne
     private Usuario usuario;
 
@@ -40,7 +40,11 @@ public class Produto {
     private Categoria categoria;
 
     @OneToMany(mappedBy = "produto", cascade = CascadeType.PERSIST)
+    //cascade persist: toda vez que cadastrar um novo produto, cadastra tbm as caracteristicas
     private Set<CaracteristicaProduto> caracteristicas = new HashSet<>();
+
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)           //cascade merge: atualiza ambos
+    private Set<ImagemProduto> imagens = new HashSet<>();
 
     @Deprecated
     public Produto() {
@@ -57,8 +61,8 @@ public class Produto {
         this.data = data;
         this.usuario = usuario;
         this.caracteristicas.addAll(caracteristicas.stream().map(
-                caracteristica -> caracteristica.converter(this)).collect(Collectors.toSet()));
-        Assert.isTrue(this.caracteristicas.size() >= 3, "Todo produto tem de ter mais de 3 caracterisricas");
+                caracteristica -> caracteristica.converter(this)).collect(Collectors.toSet()));         //converte cada caracteristica
+        Assert.isTrue(this.caracteristicas.size() >= 3, "Todo produto tem de ter mais de 3 características");      //invariancia
 
     }
 
@@ -98,16 +102,19 @@ public class Produto {
         return caracteristicas;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Produto)) return false;
-        Produto produto = (Produto) o;
-        return getQuantidade() == produto.getQuantidade() && Objects.equals(getId(), produto.getId()) && Objects.equals(getNome(), produto.getNome()) && Objects.equals(getDescricao(), produto.getDescricao()) && Objects.equals(getValor(), produto.getValor()) && Objects.equals(getUsuario(), produto.getUsuario()) && Objects.equals(getCategoria(), produto.getCategoria()) && Objects.equals(getData(), produto.getData()) && Objects.equals(getCaracteristicas(), produto.getCaracteristicas());
+    public Set<ImagemProduto> getImagens() {
+        return imagens;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getNome(), getQuantidade(), getDescricao(), getValor(), getData(), getUsuario(), getCategoria(), getCaracteristicas());
+
+
+    public void associaImagens(Set<String> links) {
+        Set<ImagemProduto> imagens = links.stream().map(link -> new ImagemProduto(this, link)).collect(Collectors.toSet());
+        this.imagens.addAll(imagens);
     }
+
+    public boolean pertenceAoUsuario(Usuario possivelDono) {
+        return this.usuario.getLogin().equals(possivelDono.getLogin());
+    }
+
 }

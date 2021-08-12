@@ -33,6 +33,7 @@ public class CaracteristicaProduto {
     public CaracteristicaProduto() {
     }
 
+
     public String getNome() {
         return nome;
     }

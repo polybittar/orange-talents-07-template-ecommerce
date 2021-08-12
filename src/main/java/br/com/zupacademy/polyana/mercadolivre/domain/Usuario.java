@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Usuario implements UserDetails {
@@ -26,7 +27,7 @@ public class Usuario implements UserDetails {
     private String senha;
     @NotNull
     private LocalDateTime dataHoraCadastro = LocalDateTime.now();
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)          // será carregado no momento que carregar o usuario
     private List<Perfil> perfis = new ArrayList<>();
 
     @Deprecated
@@ -59,7 +60,7 @@ public class Usuario implements UserDetails {
 
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public Collection<? extends GrantedAuthority> getAuthorities() {                //métodos abaixo do userdetails
         return this.perfis;
     }
 
@@ -74,7 +75,7 @@ public class Usuario implements UserDetails {
     }
 
     @Override
-    public boolean isAccountNonExpired() {
+    public boolean isAccountNonExpired() {                  //sem controle de aplicação detalhados
         return true;
     }
 

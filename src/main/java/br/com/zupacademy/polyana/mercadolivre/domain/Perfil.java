@@ -1,22 +1,15 @@
 package br.com.zupacademy.polyana.mercadolivre.domain;
 
-import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.util.Assert;
+
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collection;
 
 @Entity
 public class Perfil implements GrantedAuthority {
 
-    private static final long serialVersionUID = 1L;
 
+    private static final long serialVersionUID = 1L;    //não é obrigatório mas geramos para parar de dar warning
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -43,4 +36,3 @@ public class Perfil implements GrantedAuthority {
         return nome;
     }
 }
-
