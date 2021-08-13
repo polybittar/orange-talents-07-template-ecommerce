@@ -15,6 +15,6 @@ public class Email {
     }
 
     public void pergunta(@Valid @NotNull Pergunta pergunta) {
-        enviaEmail.enviar("<html></html>","Você recebeu uma nova pergunta: ",pergunta.getUsuario().getLogin(),"vendedor@email.com");
+        enviaEmail.enviar("Você recebeu uma nova pergunta: ",pergunta,pergunta.getUsuario().getLogin(),"vendedor@email.com");
     }
 }
