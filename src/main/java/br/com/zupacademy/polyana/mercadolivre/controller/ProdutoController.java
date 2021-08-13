@@ -57,5 +57,10 @@ public class ProdutoController {
         produto.associaImagens(links);                                      //associar esses links com o produto
         manager.merge(produto);                                             // atualizar a nova versao do produto
     }
-}
 
+    @GetMapping("produto/{id}")
+    public void detalhaProdutos(@PathVariable("id")Long id){
+        Produto produto = (Produto) manager.createQuery("select u from Produto u where u.id = :id").setParameter("id", id).getSingleResult();
+        manager.persist(produto);
+    }
+}
