@@ -4,9 +4,11 @@ import br.com.zupacademy.polyana.mercadolivre.config.validation.validator.Caract
 import br.com.zupacademy.polyana.mercadolivre.domain.Produto;
 import br.com.zupacademy.polyana.mercadolivre.domain.UploadFake;
 import br.com.zupacademy.polyana.mercadolivre.domain.Usuario;
+import br.com.zupacademy.polyana.mercadolivre.dto.DetalhesResponse;
 import br.com.zupacademy.polyana.mercadolivre.dto.ImagemRequest;
 import br.com.zupacademy.polyana.mercadolivre.dto.ProdutoRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +26,6 @@ public class ProdutoController {
 
     @PersistenceContext
     private EntityManager manager;
-
     private UploadFake uploadFake;
 
     public ProdutoController(UploadFake uploadFake) {
@@ -58,9 +59,10 @@ public class ProdutoController {
         manager.merge(produto);                                             // atualizar a nova versao do produto
     }
 
-    @GetMapping("produto/{id}")
-    public void detalhaProdutos(@PathVariable("id")Long id){
-        Produto produto = (Produto) manager.createQuery("select u from Produto u where u.id = :id").setParameter("id", id).getSingleResult();
-        manager.persist(produto);
+    @GetMapping("/{id}")
+    @Transactional
+    public ResponseEntity<DetalhesResponse> detalhar(@PathVariable("id")Long id){
+        Produto produto = manager.find(Produto.class,id);
+        return ResponseEntity.ok().body(new DetalhesResponse(produto));
     }
 }

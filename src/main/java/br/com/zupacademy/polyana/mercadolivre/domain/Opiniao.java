@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import java.util.Objects;
 
 @Entity
 public class Opiniao {
@@ -62,4 +63,5 @@ public class Opiniao {
     public Produto getProduto() {
         return produto;
     }
+
 }

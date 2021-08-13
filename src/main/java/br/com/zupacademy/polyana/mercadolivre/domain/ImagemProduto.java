@@ -1,6 +1,5 @@
 package br.com.zupacademy.polyana.mercadolivre.domain;
 
-import br.com.zupacademy.polyana.mercadolivre.config.validation.validator.UniqueValue;
 import org.hibernate.validator.constraints.URL;
 
 import javax.persistence.*;
@@ -50,6 +49,4 @@ public class ImagemProduto {
     public String getLink() {
         return link;
     }
-
-
 }

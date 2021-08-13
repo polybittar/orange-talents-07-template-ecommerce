@@ -11,9 +11,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 
@@ -45,6 +44,13 @@ public class Produto {
 
     @OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)           //cascade merge: atualiza ambos
     private Set<ImagemProduto> imagens = new HashSet<>();
+
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+    private Set<Opiniao> opinioes = new HashSet<>();
+
+    @OneToMany(mappedBy = "produto")
+    @OrderBy("titulo asc")
+    private SortedSet<Pergunta> perguntas = new TreeSet<>();
 
     @Deprecated
     public Produto() {
@@ -115,6 +121,27 @@ public class Produto {
 
     public boolean pertenceAoUsuario(Usuario possivelDono) {
         return this.usuario.getLogin().equals(possivelDono.getLogin());
+    }
+
+
+    public <T> Set<T> mapeiaCaracteristicas(
+            Function<CaracteristicaProduto, T> funcaoMapeadora) {
+        return this.caracteristicas.stream().map(funcaoMapeadora)
+                .collect(Collectors.toSet());
+    }
+
+    public <T> Set<T> mapeiaImagens(Function<ImagemProduto, T> funcaoMapeadora) {
+        return this.imagens.stream().map(funcaoMapeadora)
+                .collect(Collectors.toSet());
+    }
+
+    public <T extends Comparable<T>> SortedSet<T> mapeiaPerguntas(Function<Pergunta, T> funcaoMapeadora) {
+        return this.perguntas.stream().map(funcaoMapeadora)
+                .collect(Collectors.toCollection(TreeSet :: new));          //o treeset ordena as perguntas
+    }
+
+    public Opinioes getOpinioes()  {
+        return new Opinioes(this.opinioes);
     }
 
 }
