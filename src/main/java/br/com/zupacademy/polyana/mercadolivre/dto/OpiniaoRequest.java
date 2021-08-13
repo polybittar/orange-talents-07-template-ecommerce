@@ -1,11 +1,10 @@
 package br.com.zupacademy.polyana.mercadolivre.dto;
 
-import br.com.zupacademy.polyana.mercadolivre.config.validation.validator.ExistsId;
 import br.com.zupacademy.polyana.mercadolivre.domain.Opiniao;
 import br.com.zupacademy.polyana.mercadolivre.domain.Produto;
 import br.com.zupacademy.polyana.mercadolivre.domain.Usuario;
 
-import javax.persistence.*;
+
 import javax.validation.constraints.*;
 
 public class OpiniaoRequest {
