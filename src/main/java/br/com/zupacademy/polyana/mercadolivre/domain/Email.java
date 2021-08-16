@@ -15,6 +15,11 @@ public class Email {
     }
 
     public void pergunta(@Valid @NotNull Pergunta pergunta) {
-        enviaEmail.enviar("Você recebeu uma nova pergunta: ",pergunta,pergunta.getUsuario().getLogin(),"vendedor@email.com");
+        enviaEmail.enviar("Você recebeu uma nova pergunta:",pergunta.getTitulo(),pergunta.getUsuario().getLogin(),
+                "novapergunta@mercadolivre.com",pergunta.getProduto().getUsuario().getLogin());
     }
+
+    public void novaCompra(@Valid @NotNull Compra compra){
+        enviaEmail.enviar("Nova compra do produto:" , compra.getProduto().getNome(), compra.getUsuario().getLogin(),
+                "novacompra@mercadolivre.com",compra.getProduto().getUsuario().getLogin());    }
 }

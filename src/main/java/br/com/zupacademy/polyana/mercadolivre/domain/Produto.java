@@ -24,7 +24,7 @@ public class Produto {
     private Long id;
 
     private @NotBlank String nome;
-    private @Positive int quantidade;
+    private@NotNull int quantidade;
     private @NotBlank @Length(max = 1000) String descricao;
     private @NotNull @Positive BigDecimal valor;
     private LocalDateTime data;
@@ -113,7 +113,6 @@ public class Produto {
     }
 
 
-
     public void associaImagens(Set<String> links) {
         Set<ImagemProduto> imagens = links.stream().map(link -> new ImagemProduto(this, link)).collect(Collectors.toSet());
         this.imagens.addAll(imagens);
@@ -137,11 +136,21 @@ public class Produto {
 
     public <T extends Comparable<T>> SortedSet<T> mapeiaPerguntas(Function<Pergunta, T> funcaoMapeadora) {
         return this.perguntas.stream().map(funcaoMapeadora)
-                .collect(Collectors.toCollection(TreeSet :: new));          //o treeset ordena as perguntas
+                .collect(Collectors.toCollection(TreeSet::new));          //o treeset ordena as perguntas
     }
 
-    public Opinioes getOpinioes()  {
+    public Opinioes getOpinioes() {
         return new Opinioes(this.opinioes);
     }
 
+
+    public boolean diminuiEstoque(int quantidade) {
+        Assert.isTrue(quantidade > 0,"A quantidade deve ser maior que zero");
+        if(quantidade <= this.quantidade){
+            this.quantidade -= quantidade;
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

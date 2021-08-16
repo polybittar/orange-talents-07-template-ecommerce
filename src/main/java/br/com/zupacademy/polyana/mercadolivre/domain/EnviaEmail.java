@@ -8,5 +8,5 @@ import javax.validation.constraints.NotNull;
 @Component
 public interface EnviaEmail {
 
-    void enviar(String corpo, @Valid @NotNull Pergunta pergunta, String emailCliente, String emailVendedor);
+    void enviar(String assunto, @Valid @NotNull String corpo, String emailCliente, String emailEcommerce, String emailVendedor);
 }
