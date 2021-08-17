@@ -1,7 +1,7 @@
 package br.com.zupacademy.polyana.mercadolivre.dto;
 
-import br.com.zupacademy.polyana.mercadolivre.domain.SenhaLimpa;
-import br.com.zupacademy.polyana.mercadolivre.domain.Usuario;
+import br.com.zupacademy.polyana.mercadolivre.domain.usuario.SenhaLimpa;
+import br.com.zupacademy.polyana.mercadolivre.domain.usuario.Usuario;
 import br.com.zupacademy.polyana.mercadolivre.config.validation.validator.UniqueValue;
 import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.Email;

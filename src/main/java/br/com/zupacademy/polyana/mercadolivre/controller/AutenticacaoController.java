@@ -1,8 +1,8 @@
 package br.com.zupacademy.polyana.mercadolivre.controller;
 
 import br.com.zupacademy.polyana.mercadolivre.config.security.TokenManager;
-import br.com.zupacademy.polyana.mercadolivre.dto.AutenticacaoRequest;
-import br.com.zupacademy.polyana.mercadolivre.dto.TokenResponse;
+import br.com.zupacademy.polyana.mercadolivre.dto.securitydto.AutenticacaoRequest;
+import br.com.zupacademy.polyana.mercadolivre.dto.securitydto.TokenResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

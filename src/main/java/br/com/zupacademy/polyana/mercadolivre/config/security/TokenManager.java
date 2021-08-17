@@ -2,7 +2,7 @@ package br.com.zupacademy.polyana.mercadolivre.config.security;
 
 import java.util.Date;
 
-import br.com.zupacademy.polyana.mercadolivre.domain.Usuario;
+import br.com.zupacademy.polyana.mercadolivre.domain.usuario.Usuario;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

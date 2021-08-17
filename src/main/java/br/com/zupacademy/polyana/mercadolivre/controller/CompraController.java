@@ -1,7 +1,9 @@
 package br.com.zupacademy.polyana.mercadolivre.controller;
 
-import br.com.zupacademy.polyana.mercadolivre.domain.*;
-import br.com.zupacademy.polyana.mercadolivre.dto.CompraRequest;
+import br.com.zupacademy.polyana.mercadolivre.domain.compra.Compra;
+import br.com.zupacademy.polyana.mercadolivre.domain.email.Email;
+import br.com.zupacademy.polyana.mercadolivre.domain.usuario.Usuario;
+import br.com.zupacademy.polyana.mercadolivre.dto.compradto.CompraRequest;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -46,6 +46,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				.antMatchers(HttpMethod.POST, "/api/v1/auth").permitAll()
 				.antMatchers(HttpMethod.POST, "/api/v1/usuarios").permitAll()
+				.antMatchers(HttpMethod.POST, "/nota-fiscal").permitAll()		// só para ficar mais facil de testar
+				.antMatchers(HttpMethod.POST, "/ranking").permitAll()
 				.anyRequest().authenticated()
 				.and().csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)

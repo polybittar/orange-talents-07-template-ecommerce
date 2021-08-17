@@ -1,6 +1,6 @@
 package br.com.zupacademy.polyana.mercadolivre.config.security;
 
-import br.com.zupacademy.polyana.mercadolivre.domain.Usuario;
+import br.com.zupacademy.polyana.mercadolivre.domain.usuario.Usuario;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

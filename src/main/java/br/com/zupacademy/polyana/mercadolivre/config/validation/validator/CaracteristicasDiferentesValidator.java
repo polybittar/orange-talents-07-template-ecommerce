@@ -1,6 +1,6 @@
 package br.com.zupacademy.polyana.mercadolivre.config.validation.validator;
 
-import br.com.zupacademy.polyana.mercadolivre.dto.ProdutoRequest;
+import br.com.zupacademy.polyana.mercadolivre.dto.produtodto.ProdutoRequest;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
